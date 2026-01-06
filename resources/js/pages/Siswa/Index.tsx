@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import { useForm } from '@inertiajs/react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useState } from 'react';
+import { useForm } from '@inertiajs/react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import AppLayout from '@/layouts/app-layout';
+import { type BreadcrumbItem } from '@/types';
+
 
 interface Kelas {
     id: number
@@ -56,9 +59,14 @@ export default function Index({
     setData('alamat', item.alamat)
     setData('tanggal_lahir', item.tanggal_lahir)
     setData('kelas_id', String(item.kelas_id))
-}
+    }
+
+    const breadcrumbs: BreadcrumbItem[] = [
+        { title: 'Siswa', href: '/siswa' },
+    ];
 
     return (
+    <AppLayout breadcrumbs={breadcrumbs}>
         <div className="p-6 space-y-6">
             <h1 className="text-2xl font-semibold">Data Siswa</h1>
             
@@ -81,11 +89,11 @@ export default function Index({
                     }
                 />
                 <select
-                    className="border rounded px-2"
+                    className="border rounded px-2 border-"
                     value={data.kelas_id}
                     onChange={(e) => setData('kelas_id', e.target.value)}
                 >
-                    <option value="">Pilih Kelas</option>
+                    <option className='text-gray-800' value="">Pilih Kelas</option>
                     {kelas.map((k) => (
                         <option key={k.id} value={k.id}>
                             {k.nama_kelas}
@@ -97,30 +105,31 @@ export default function Index({
                     {editId ? 'Update' : 'Tambah'}
                 </Button>
             </form>
-            <table className="w-full border">
+            <div className='relative flex-1 overflow-x-auto rounded-xl border border-sidebar-border/70 p-4'>
+            <table className="w-full border-collapse ">
                 <thead>
-                    <tr>
-                        <th className="border p-2">No</th>
-                        <th className="border p-2">Nama</th>
-                        <th className="border p-2">Alamat</th>
-                        <th className="border p-2">Tgl Lahir</th>
-                        <th className="border p-2">Kelas</th>
-                        <th className="border p-2">Aksi</th>
+                    <tr className='border-b'>
+                        <th className="text-left p-2">No</th>
+                        <th className="text-left p-2">Nama</th>
+                        <th className="text-left p-2">Alamat</th>
+                        <th className="text-left p-2">Tgl Lahir</th>
+                        <th className="text-left p-2">Kelas</th>
+                        <th className="text-left p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     {siswa.map((s, i) => (
                         <tr key={s.id}>
-                            <td className="border p-2">{i + 1}</td>
-                            <td className="border p-2">{s.nama_siswa}</td>
-                            <td className="border p-2">{s.alamat}</td>
-                            <td className="border p-2">
+                            <td className="text-left p-2">{i + 1}</td>
+                            <td className="text-left p-2">{s.nama_siswa}</td>
+                            <td className="text-left p-2">{s.alamat}</td>
+                            <td className="text-left p-2">
                                 {s.tanggal_lahir}
                             </td>
-                            <td className="border p-2">
+                            <td className="text-left p-2">
                                 {s.kelas?.nama_kelas}
                             </td>
-                            <td className="border p-2 space-x-2">
+                            <td className="text-left p-2 space-x-2">
                                 <Button size="sm" onClick={() => edit(s)}>
                                     Edit
                                 </Button>
@@ -138,6 +147,8 @@ export default function Index({
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
+    </AppLayout>
     )
 }

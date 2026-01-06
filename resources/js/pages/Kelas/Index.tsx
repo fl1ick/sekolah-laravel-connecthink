@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import AppLayout from '@/layouts/app-layout';
+import { type BreadcrumbItem } from '@/types';
 
 interface Kelas {
     id: number;
@@ -37,11 +39,15 @@ export default function Index({ kelas = [] }: { kelas: Kelas[] }) {
         setData('nama_kelas', item.nama_kelas);
     };
 
+    const breadcrumbs: BreadcrumbItem[] = [
+        { title: 'Kelas', href: '/kelas' },
+    ];
+
     return (
+    <AppLayout breadcrumbs={breadcrumbs}>
         <div className="p-6 space-y-6">
             <h1 className="text-2xl font-semibold">Data Kelas</h1>
 
-            {/* Form Tambah / Edit */}
             <form onSubmit={submit} className="flex gap-2 max-w-md">
                 <Input
                     placeholder="Nama Kelas"
@@ -64,27 +70,25 @@ export default function Index({ kelas = [] }: { kelas: Kelas[] }) {
                     </Button>
                 )}
             </form>
-
-            {/* Table */}
-            <div className="overflow-x-auto">
-                <table className="w-full border">
+            <div className="relative flex-1 overflow-x-auto rounded-xl border border-sidebar-border/70 p-4">
+                <table className="w-full border-collapse">
                     <thead>
-                        <tr className="bg-muted">
-                            <th className="border p-2">No</th>
-                            <th className="border p-2">Nama Kelas</th>
-                            <th className="border p-2">Aksi</th>
+                        <tr className="border-b">
+                            <th className="text-left p-2">No</th>
+                            <th className="text-left p-2">Nama Kelas</th>
+                            <th className="text-left p-2">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         {kelas.map((item, i) => (
                             <tr key={item.id}>
-                                <td className="border p-2 text-center">
+                                <td className="text-left p-2">
                                     {i + 1}
                                 </td>
-                                <td className="border p-2">
+                                <td className="text-left p-2">
                                     {item.nama_kelas}
                                 </td>
-                                <td className="border p-2 space-x-2">
+                                <td className="text-left p-2 space-x-2">
                                     <Button
                                         size="sm"
                                         onClick={() => startEdit(item)}
@@ -114,5 +118,6 @@ export default function Index({ kelas = [] }: { kelas: Kelas[] }) {
                 </table>
             </div>
         </div>
+    </AppLayout>
     );
 }
