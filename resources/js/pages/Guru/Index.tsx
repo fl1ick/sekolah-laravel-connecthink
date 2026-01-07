@@ -78,7 +78,7 @@ export default function Index({
                     onChange={(e) => setData('mengajar', e.target.value)}
                 />
                 <select
-                    className="border rounded px-2"
+                    className="border rounded-xl px-2 bg-black"
                     value={data.kelas_id}
                     onChange={(e) => setData('kelas_id', e.target.value)}
                 >

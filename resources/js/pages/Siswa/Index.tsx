@@ -89,11 +89,11 @@ export default function Index({
                     }
                 />
                 <select
-                    className="border rounded px-2 border-"
+                    className="border rounded-xl px-2 bg-black"
                     value={data.kelas_id}
                     onChange={(e) => setData('kelas_id', e.target.value)}
                 >
-                    <option className='text-gray-800' value="">Pilih Kelas</option>
+                    <option value="">Pilih Kelas</option>
                     {kelas.map((k) => (
                         <option key={k.id} value={k.id}>
                             {k.nama_kelas}
@@ -124,7 +124,7 @@ export default function Index({
                             <td className="text-left p-2">{s.nama_siswa}</td>
                             <td className="text-left p-2">{s.alamat}</td>
                             <td className="text-left p-2">
-                                {s.tanggal_lahir}
+                                {s.tanggal_lahir.slice(0, 10)}
                             </td>
                             <td className="text-left p-2">
                                 {s.kelas?.nama_kelas}

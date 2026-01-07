@@ -16,7 +16,7 @@ class KelasSeeder extends Seeder
          $kelas = ['X IPA 1', 'X IPA 2', 'XI IPS 1', 'XII IPA 1'];
 
         foreach ($kelas as $k) {
-            Kelas::create([
+            Kelas::firstOrCreate([
                 'nama_kelas' => $k,
             ]);
         }

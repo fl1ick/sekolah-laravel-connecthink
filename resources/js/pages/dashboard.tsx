@@ -51,7 +51,6 @@ export default function Dashboard() {
                                         <td className="p-2 font-medium">
                                             {item.nama_kelas}
                                         </td>
-
                                         <td className="p-2">
                                             {item.guru.length > 0
                                                 ? item.guru.map((g: any) => (
@@ -61,7 +60,6 @@ export default function Dashboard() {
                                                 ))
                                                 : '-'}
                                         </td>
-
                                         <td className="p-2">
                                             {item.siswa.length > 0
                                                 ? item.siswa.map((s: any) => (
