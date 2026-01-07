@@ -21,13 +21,13 @@ class GuruController extends Controller
     {
         $request->validate([
             'nama_guru' => 'required|string|max:255',
-            'mengajar' => 'required|string|max:255',
+            'Mengajar' => 'required|string|max:255',
             'kelas_id' => 'required|exists:kelas,id',
         ]);
 
         Guru::create($request->only(
             'nama_guru',
-            'mengajar',
+            'Mengajar',
             'kelas_id'
         ));
 
@@ -38,13 +38,13 @@ class GuruController extends Controller
     {
         $request->validate([
             'nama_guru' => 'required|string|max:255',
-            'mengajar' => 'required|string|max:255',
+            'Mengajar' => 'required|string|max:255',
             'kelas_id' => 'required|exists:kelas,id',
         ]);
 
         $guru->update($request->only(
             'nama_uru',
-            'mengajar',
+            'Mengajar',
             'kelas_id'
         ));
 

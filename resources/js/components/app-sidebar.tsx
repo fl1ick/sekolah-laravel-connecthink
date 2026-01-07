@@ -1,4 +1,3 @@
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -11,14 +10,14 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, School, LayoutGrid, User, GraduationCap } from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import { GraduationCap, LayoutGrid, School, User } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: '/dashboard', 
+        href: '/dashboard',
         icon: LayoutGrid,
     },
     {
@@ -26,18 +25,17 @@ const mainNavItems: NavItem[] = [
         href: '/kelas',
         icon: School,
     },
-{
+    {
         title: 'Siswa',
         href: '/siswa',
         icon: User,
     },
     {
         title: 'Guru',
-        href: '/guru',  
+        href: '/guru',
         icon: GraduationCap,
     },
 ];
-
 
 export function AppSidebar() {
     return (
@@ -46,7 +44,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard" prefetch>
+                            <Link prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>
