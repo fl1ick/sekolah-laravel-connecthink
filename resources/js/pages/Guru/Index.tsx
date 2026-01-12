@@ -64,17 +64,6 @@ export default function Index({
         setData('kelas_id', String(item.kelas_id));
     };
 
-    const guruPerKelas = guru.reduce((acc: Record<number, Guru[]>, item) => {
-        if (!item.kelas) return acc;
-
-        if (!acc[item.kelas.id]) {
-            acc[item.kelas.id] = [];
-        }
-
-        acc[item.kelas.id].push(item);
-        return acc;
-    }, {});
-
     const breadcrumbs: BreadcrumbItem[] = [{ title: 'Guru', href: '/guru' }];
 
     return (
@@ -118,57 +107,39 @@ export default function Index({
                         <thead>
                             <tr className="border-b">
                                 <th className="p-2 text-left">No</th>
-                                <th className="p-2 text-left">Nama</th>
+                                <th className="p-2 text-left">Guru</th>
                                 <th className="p-2 text-left">Mengajar</th>
                                 <th className="p-2 text-left">Kelas</th>
                                 <th className="p-2 text-left">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.values(guruPerKelas).map((group, index) => (
-                                <>
-                                    <tr
-                                        key={`kelas-${group[0].kelas.id}`}
-                                        className="bg-slate-900 font-semibold"
-                                    >
-                                        <td colSpan={5} className="p-3">
-                                            Kelas: {group[0].kelas.nama_kelas}
-                                        </td>
-                                    </tr>
-                                    {group.map((g, i) => (
-                                        <tr key={g.id} className="border-b">
-                                            <td className="p-2 text-left">
-                                                {i + 1}
-                                            </td>
-                                            <td className="p-2 text-left">
-                                                {g.nama_guru}
-                                            </td>
-                                            <td className="p-2 text-left">
-                                                {g.Mengajar}
-                                            </td>
-                                            <td className="p-2 text-left">
-                                                {g.kelas.nama_kelas}
-                                            </td>
-                                            <td className="space-x-2 p-2 text-left">
-                                                <Button
-                                                    size="sm"
-                                                    onClick={() => edit(g)}
-                                                >
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    size="sm"
-                                                    variant="destructive"
-                                                    onClick={() =>
-                                                        destroy(`/guru/${g.id}`)
-                                                    }
-                                                >
-                                                    Hapus
-                                                </Button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </>
+                            {guru.map((g, index) => (
+                                <tr key={g.id} className="border-b">
+                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2">{g.nama_guru}</td>
+                                    <td className="p-2">{g.Mengajar}</td>
+                                    <td className="p-2">
+                                        {g.kelas?.nama_kelas ?? '-'}
+                                    </td>
+                                    <td className="space-x-2 p-2">
+                                        <Button
+                                            size="sm"
+                                            onClick={() => edit(g)}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            variant="destructive"
+                                            onClick={() =>
+                                                destroy(`/guru/${g.id}`)
+                                            }
+                                        >
+                                            Hapus
+                                        </Button>
+                                    </td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>

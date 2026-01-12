@@ -73,6 +73,132 @@ export default function Dashboard() {
                         </tbody>
                     </table>
                 </div>
+                <div className="relative flex-1 overflow-x-auto rounded-xl border border-sidebar-border/70 p-4">
+                    <h1>Daftar point 5</h1>
+                    <table className="w-full border-collapse">
+                        <thead>
+                            <tr className="border-b">
+                                <th className="p-2 text-left">No</th>
+                                <th className="p-2 text-left">Kelas</th>
+                                <th className="p-2 text-left">Guru</th>
+                                <th className="p-2 text-left">Siswa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {kelas.map((item: any, index: number) => (
+                                <tr key={item.id} className="border-b">
+                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2 font-medium">
+                                        {item.nama_kelas}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.guru.length > 0
+                                            ? item.guru.map((g: any) => (
+                                                  <div key={g.id}>
+                                                      {g.nama_guru} (
+                                                      {g.mengajar})
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.siswa.length > 0
+                                            ? item.siswa.map((s: any) => (
+                                                  <div key={s.id}>
+                                                      {s.nama_siswa}
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="relative flex-1 overflow-x-auto rounded-xl border border-sidebar-border/70 p-4">
+                    <h1>Daftar point 6</h1>
+                    <table className="w-full border-collapse">
+                        <thead>
+                            <tr className="border-b">
+                                <th className="p-2 text-left">No</th>
+                                <th className="p-2 text-left">Kelas</th>
+                                <th className="p-2 text-left">Guru</th>
+                                <th className="p-2 text-left">Siswa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {kelas.map((item: any, index: number) => (
+                                <tr key={item.id} className="border-b">
+                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2 font-medium">
+                                        {item.nama_kelas}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.guru.length > 0
+                                            ? item.guru.map((g: any) => (
+                                                  <div key={g.id}>
+                                                      {g.nama_guru} (
+                                                      {g.mengajar})
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.siswa.length > 0
+                                            ? item.siswa.map((s: any) => (
+                                                  <div key={s.id}>
+                                                      {s.nama_siswa}
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="relative flex-1 overflow-x-auto rounded-xl border border-sidebar-border/70 p-4">
+                    <h1>Daftar point 7</h1>
+                    <table className="w-full border-collapse">
+                        <thead>
+                            <tr className="border-b">
+                                <th className="p-2 text-left">No</th>
+                                <th className="p-2 text-left">Kelas</th>
+                                <th className="p-2 text-left">Guru</th>
+                                <th className="p-2 text-left">Siswa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {kelas.map((item: any, index: number) => (
+                                <tr key={item.id} className="border-b">
+                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2 font-medium">
+                                        {item.nama_kelas}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.guru.length > 0
+                                            ? item.guru.map((g: any) => (
+                                                  <div key={g.id}>
+                                                      {g.nama_guru} (
+                                                      {g.mengajar})
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                    <td className="p-2">
+                                        {item.siswa.length > 0
+                                            ? item.siswa.map((s: any) => (
+                                                  <div key={s.id}>
+                                                      {s.nama_siswa}
+                                                  </div>
+                                              ))
+                                            : '-'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </AppLayout>
     );

@@ -67,17 +67,6 @@ export default function Index({
         setData('kelas_id', String(item.kelas_id));
     };
 
-    const siswaPerKelas = siswa.reduce((acc: Record<number, Siswa[]>, item) => {
-        if (!item.kelas) return acc;
-
-        if (!acc[item.kelas.id]) {
-            acc[item.kelas.id] = [];
-        }
-
-        acc[item.kelas.id].push(item);
-        return acc;
-    }, {});
-
     const breadcrumbs: BreadcrumbItem[] = [{ title: 'Siswa', href: '/siswa' }];
 
     return (
@@ -130,66 +119,42 @@ export default function Index({
                                 <th className="p-2 text-left">No</th>
                                 <th className="p-2 text-left">Nama</th>
                                 <th className="p-2 text-left">Alamat</th>
-                                <th className="p-2 text-left">Tgl Lahir</th>
+                                <th className="p-2 text-left">Tanggal Lahir</th>
                                 <th className="p-2 text-left">Kelas</th>
                                 <th className="p-2 text-left">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.values(siswaPerKelas).map(
-                                (group, index) => (
-                                    <>
-                                        <tr
-                                            key={`kelas-${group[0].kelas.id}`}
-                                            className="bg-slate-900 font-semibold"
+                            {siswa.map((s, index) => (
+                                <tr key={s.id} className="border-b">
+                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2">{s.nama_siswa}</td>
+                                    <td className="p-2">{s.alamat}</td>
+                                    <td className="p-2">
+                                        {s.tanggal_lahir.slice(0, 10)}
+                                    </td>
+                                    <td className="p-2">
+                                        {s.kelas?.nama_kelas ?? '-'}
+                                    </td>
+                                    <td className="space-x-2 p-2">
+                                        <Button
+                                            size="sm"
+                                            onClick={() => edit(s)}
                                         >
-                                            <td colSpan={6} className="p-3">
-                                                Kelas:{' '}
-                                                {group[0].kelas.nama_kelas}
-                                            </td>
-                                        </tr>
-                                        {group.map((s, i) => (
-                                            <tr key={s.id} className="border-b">
-                                                <td className="p-2">{i + 1}</td>
-                                                <td className="p-2">
-                                                    {s.nama_siswa}
-                                                </td>
-                                                <td className="p-2">
-                                                    {s.alamat}
-                                                </td>
-                                                <td className="p-2">
-                                                    {s.tanggal_lahir.slice(
-                                                        0,
-                                                        10,
-                                                    )}
-                                                </td>
-                                                <td className="p-2">
-                                                    {s.kelas.nama_kelas}
-                                                </td>
-                                                <td className="space-x-2 p-2">
-                                                    <Button
-                                                        size="sm"
-                                                        onClick={() => edit(s)}
-                                                    >
-                                                        Edit
-                                                    </Button>
-                                                    <Button
-                                                        size="sm"
-                                                        variant="destructive"
-                                                        onClick={() =>
-                                                            destroy(
-                                                                `/siswa/${s.id}`,
-                                                            )
-                                                        }
-                                                    >
-                                                        Hapus
-                                                    </Button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </>
-                                ),
-                            )}
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            variant="destructive"
+                                            onClick={() =>
+                                                destroy(`/siswa/${s.id}`)
+                                            }
+                                        >
+                                            Hapus
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
