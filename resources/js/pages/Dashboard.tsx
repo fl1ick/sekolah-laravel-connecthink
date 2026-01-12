@@ -33,14 +33,14 @@ export default function Dashboard() {
                 </div>
 
                 <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
-                    <div className="">
+                    <div>
                         <h1 className="mb-4 text-2xl font-semibold">
                             Daftar Siswa per Kelas
                         </h1>
                     </div>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto flex-1">
                         <table className="w-full border-collapse overflow-x-auto">
-                            <thead>
+                            <thead className='sticky'>
                                 <tr className="border-b">
                                     <th className="p-2 text-left">No</th>
                                     <th className="p-2 text-left">Kelas</th>
@@ -70,7 +70,10 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
-                    <h1>Daftar Guru per Kelas</h1>
+                    <div>
+                    <h1 className='"mb-4 text-2xl font-semibold'>Daftar Guru per Kelas</h1>
+                    </div>
+                    <div className='overflow-x-auto flex-1'>
                     <table className="h-full w-full border-collapse">
                         <thead>
                             <tr className="border-b">
@@ -100,12 +103,13 @@ export default function Dashboard() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
                 <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
                     <div>
-                        <h1>Daftar Siswa & Guru per Kelas</h1>
+                        <h1 className='"mb-4 text-2xl font-semibold'>Daftar Siswa & Guru per Kelas</h1>
                     </div>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto flex-1">
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr className="border-b">
