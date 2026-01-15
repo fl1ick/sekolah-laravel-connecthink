@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Kelas;
+use App\Models\Orangtua;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,8 +13,9 @@ class SiswaController extends Controller
     public function index()
     {
         return Inertia::render('Siswa/Index', [
-            'siswa' => Siswa::with('kelas')->get(),
+            'siswa' => Siswa::with('kelas','orangtua')->get(),
             'kelas' => Kelas::all(),
+            'orangtua' => Orangtua::all(),
         ]);
     }
 
@@ -24,13 +26,15 @@ class SiswaController extends Controller
             'alamat' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'kelas_id' => 'required|exists:kelas,id',
+            'orangtua_id' => 'required|exists:orangtua,id',
         ]);
 
         Siswa::create($request->only(
             'nama_siswa',
             'alamat',
             'tanggal_lahir',
-            'kelas_id'
+            'kelas_id',
+            'orangtua_id'
         ));
 
         return redirect()->back()->with('success', 'Siswa berhasil ditambahkan');
@@ -43,13 +47,15 @@ class SiswaController extends Controller
             'alamat' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'kelas_id' => 'required|exists:kelas,id',
+            'orangtua_id'  => 'required|exists:orangtua,id',
         ]);
 
         $siswa->update($request->only(
             'nama_siswa',
             'alamat',
             'tanggal_lahir',
-            'kelas_id'
+            'kelas_id',
+            'orangtua_id'
         ));
 
         return redirect()->back()->with('success', 'Siswa berhasil diupdate');

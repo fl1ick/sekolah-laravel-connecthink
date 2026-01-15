@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Siswa;
 use App\Models\Kelas;
+use App\Models\Orangtua;
 use Faker\Factory as Faker;
 
 class SiswaSeeder extends Seeder
@@ -17,6 +18,7 @@ class SiswaSeeder extends Seeder
     {
         $faker = Faker::create();
         $kelasId = Kelas::pluck('id'); 
+        $orangtuaIds = Orangtua::pluck('id');
 
         foreach(range(1, 20) as $index) {
             Siswa::create([
@@ -24,6 +26,7 @@ class SiswaSeeder extends Seeder
                 'alamat' => $faker->address(),
                 'tanggal_lahir' => $faker->date('Y-m-d', '2007-12-31'),
                 'kelas_id' => $kelasId->random(),
+                'orangtua_id'    => $orangtuaIds->random(),
             ]);
         }
     }

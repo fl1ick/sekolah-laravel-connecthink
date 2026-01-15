@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
-use App\Http\Controllers\{KelasController ,SiswaController, GuruController ,DashboardController};
+use App\Http\Controllers\{KelasController ,SiswaController, GuruController ,DashboardController, OrangtuaController};
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -25,6 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('guru', GuruController::class)
     ->parameters(['guru' => 'guru'])
+    ->only(['index', 'store', 'update', 'destroy']);
+
+    Route::resource('orangtua', OrangtuaController::class)
+    ->parameters(['orangtua' => 'orangtua'])
     ->only(['index', 'store', 'update', 'destroy']);
 
 });

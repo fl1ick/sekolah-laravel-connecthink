@@ -32,15 +32,15 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
+                <div className="relative rounded-xl border border-sidebar-border/70 p-3">
                     <div>
-                        <h1 className="mb-4 text-2xl font-semibold">
+                        <h1 className="mb-3 text-2xl font-semibold">
                             Daftar Siswa per Kelas
                         </h1>
                     </div>
-                    <div className="overflow-x-auto flex-1">
-                        <table className="w-full border-collapse overflow-x-auto">
-                            <thead className='sticky'>
+                    <div className="overflow-x-auto">
+                        <table className="w-full table-fixed border-collapse">
+                            <thead className="sticky">
                                 <tr className="border-b">
                                     <th className="p-2 text-left">No</th>
                                     <th className="p-2 text-left">Kelas</th>
@@ -69,48 +69,52 @@ export default function Dashboard() {
                         </table>
                     </div>
                 </div>
-                <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
+                <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-3">
                     <div>
-                    <h1 className='"mb-4 text-2xl font-semibold'>Daftar Guru per Kelas</h1>
+                        <h1 className="mb-4 text-2xl font-semibold">
+                            Daftar Guru per Kelas
+                        </h1>
                     </div>
-                    <div className='overflow-x-auto flex-1'>
-                    <table className="h-full w-full border-collapse">
-                        <thead>
-                            <tr className="border-b">
-                                <th className="p-2 text-left">No</th>
-                                <th className="p-2 text-left">Kelas</th>
-                                <th className="p-2 text-left">Guru</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {kelas.map((item: any, index: number) => (
-                                <tr key={item.id} className="border-b">
-                                    <td className="p-2">{index + 1}</td>
-                                    <td className="p-2 font-medium">
-                                        {item.nama_kelas}
-                                    </td>
-                                    <td className="p-2">
-                                        {item.guru.length > 0
-                                            ? item.guru.map((g: any) => (
-                                                  <div key={g.id}>
-                                                      {g.nama_guru} (
-                                                      {g.mengajar})
-                                                  </div>
-                                              ))
-                                            : '-'}
-                                    </td>
+                    <div className="overflow-x-auto">
+                        <table className="w-full table-fixed border-collapse">
+                            <thead>
+                                <tr className="border-b">
+                                    <th className="p-2 text-left">No</th>
+                                    <th className="p-2 text-left">Kelas</th>
+                                    <th className="p-2 text-left">Guru</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {kelas.map((item: any, index: number) => (
+                                    <tr key={item.id} className="border-b">
+                                        <td className="p-2">{index + 1}</td>
+                                        <td className="p-2 font-medium">
+                                            {item.nama_kelas}
+                                        </td>
+                                        <td className="p-2">
+                                            {item.guru.length > 0
+                                                ? item.guru.map((g: any) => (
+                                                      <div key={g.id}>
+                                                          {g.nama_guru} (
+                                                          {g.mengajar})
+                                                      </div>
+                                                  ))
+                                                : '-'}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div className="relative flex-1 rounded-xl border border-sidebar-border/70 p-4">
                     <div>
-                        <h1 className='"mb-4 text-2xl font-semibold'>Daftar Siswa & Guru per Kelas</h1>
+                        <h1 className='"mb-4 text-2xl font-semibold'>
+                            Daftar Siswa & Guru per Kelas
+                        </h1>
                     </div>
-                    <div className="overflow-x-auto flex-1">
-                        <table className="w-full border-collapse">
+                    <div className="overflow-x-auto">
+                        <table className="w-full table-fixed border-collapse">
                             <thead>
                                 <tr className="border-b">
                                     <th className="p-2 text-left">No</th>

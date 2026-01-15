@@ -17,14 +17,23 @@ interface Siswa {
     tanggal_lahir: string;
     kelas_id: number;
     kelas: Kelas;
+    orangtua_id: number;
+    orangtua: Orangtua;
+}
+
+interface Orangtua {
+    id: number;
+    nama_orangtua: string;
 }
 
 export default function Index({
     siswa = [],
     kelas = [],
+    orangtua = [],
 }: {
     siswa: Siswa[];
     kelas: Kelas[];
+    orangtua: Orangtua[];
 }) {
     const [editId, setEditId] = useState<number | null>(null);
 
@@ -40,6 +49,7 @@ export default function Index({
         alamat: '',
         tanggal_lahir: '',
         kelas_id: '',
+        orangtua_id: '',
     });
 
     const submit = (e: React.FormEvent) => {
@@ -65,6 +75,7 @@ export default function Index({
         setData('alamat', item.alamat);
         setData('tanggal_lahir', item.tanggal_lahir);
         setData('kelas_id', String(item.kelas_id));
+        setData('orangtua_id', String(item.orangtua_id));
     };
 
     const breadcrumbs: BreadcrumbItem[] = [{ title: 'Siswa', href: '/siswa' }];
@@ -107,6 +118,18 @@ export default function Index({
                             </option>
                         ))}
                     </select>
+                    <select
+                        className="rounded-xl border bg-black px-2"
+                        value={data.orangtua_id}
+                        onChange={(e) => setData('orangtua_id', e.target.value)}
+                    >
+                        <option value="">Pilih Orangtua</option>
+                        {orangtua.map((o) => (
+                            <option key={o.id} value={o.id}>
+                                {o.nama_orangtua}
+                            </option>
+                        ))}
+                    </select>
 
                     <Button type="submit">
                         {editId ? 'Update' : 'Tambah'}
@@ -121,6 +144,7 @@ export default function Index({
                                 <th className="p-2 text-left">Alamat</th>
                                 <th className="p-2 text-left">Tanggal Lahir</th>
                                 <th className="p-2 text-left">Kelas</th>
+                                <th className="p-2 text-left">Nama Orangtua</th>
                                 <th className="p-2 text-left">Aksi</th>
                             </tr>
                         </thead>
@@ -135,6 +159,9 @@ export default function Index({
                                     </td>
                                     <td className="p-2">
                                         {s.kelas?.nama_kelas ?? '-'}
+                                    </td>
+                                    <td className="p-2">
+                                        {s.orangtua?.nama_orangtua ?? '-'}
                                     </td>
                                     <td className="space-x-2 p-2">
                                         <Button

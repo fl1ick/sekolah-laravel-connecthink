@@ -35,6 +35,11 @@ const mainNavItems: NavItem[] = [
         href: '/guru',
         icon: GraduationCap,
     },
+    {
+        title: 'Orangtua',
+        href: '/orangtua',
+        icon: User,
+    },
 ];
 
 export function AppSidebar() {

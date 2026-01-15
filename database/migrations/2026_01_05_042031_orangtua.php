@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswa', function (Blueprint $table) {
+        Schema::create('orangtua', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_siswa');
-            $table->string('alamat');
-            $table->date('tanggal_lahir');
-            $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete();
-            $table->foreignId('orangtua_id')->constrained('orangtua')->cascadeOnDelete();
+            $table->string('nama_orangtua')->unique();
             $table->timestamps();
         });
     }
